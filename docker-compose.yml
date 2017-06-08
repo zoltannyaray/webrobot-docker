@@ -1,0 +1,22 @@
+version: "3"
+services:
+  webrobot-rabbit:
+    image: rabbitmq:management-alpine
+    ports:
+     - "5672:5672"
+     - "15672:15672"
+    hostname: "webrobot-rabbit"
+  webrobot-config-service:
+    image: zula/webrobot-config-service
+    ports:
+     - "3001:3001"
+  webrobot-eureka-service:
+    image: zula/webrobot-eureka-service
+    ports:
+     - "8761:8761"
+  webrobot-lookup-definition-service:
+    image: zula/webrobot-lookup-definition-service
+    ports:
+     - "4002"
+    env_file:
+     - ./env/default.env
